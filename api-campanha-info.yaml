@@ -80,3 +80,43 @@ spec:
               description: Campanha atualizada com sucesso
             '404':
               description: Campanha não encontrada
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata: 
+  name: mysql-database
+  description: Banco de dados MySQL usado pela API de campanhas para salvar informações basicas sobre a campanha.
+
+spec: 
+  type: database
+  owner: grupo 2
+  system: api-campanha
+  dependsOn:
+    - type: service
+      name: api-campanha
+  parameters:
+    hostname: "mysql-servidor"
+    port: 3306
+    database: "banco do romualdo"
+    username: "db_dev_campanha"
+    password: "romualdo 1"
+
+# Definição do recurso MongoDB
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: mongodb-database
+  description: Banco de dados MongoDB usado pela API de campanhas
+spec:
+  type: database
+  owner: equipe-api
+  system: api-campanha
+  dependsOn:
+    - type: service
+      name: api-campanha
+  parameters:
+    hostname: "mongo-servidor"
+    port: 27017
+    database: "nome_do_banco"
+    username: "${MONGO_USER}"
+    password: "${MONGO_PASSWORD}"
