@@ -1,23 +1,82 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: API
 metadata:
-  name: API-Campanha
-  description: |
-    Gestão de campanhas
-  links:
-    - title: Website
-      url: http://backstage.io
-    - title: Documentation
-      url: https://localhoost/docs
-    - title: Storybook
-      url: https://backstage.io/storybook
-    - title: Discord Chat
-      url: https://discord.com/invite/EBHEGzX
-  annotations:
-    github.com/project-slug: cogny/api-campanha
-    backstage.io/techdocs-ref: dir:.
-    lighthouse.com/website-url: https://backstage.io
+  name: api-campanha
+  description: API para gerenciamento de campanhas de marketing
 spec:
-  type: api
-  owner: grupo2
+  type: openapi
   lifecycle: experimental
+  owner: equipe-api
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: API de Campanha
+      version: 1.0.0
+      description: API que permite gerenciar campanhas de marketing, incluindo criação, atualização e listagem de campanhas.
+    paths:
+      /campaigns:
+        get:
+          summary: Lista todas as campanhas
+          description: Retorna uma lista de todas as campanhas disponíveis.
+          responses:
+            '200':
+              description: Lista de campanhas retornada com sucesso
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: ID da campanha
+                        name:
+                          type: string
+                          description: Nome da campanha
+        post:
+          summary: Cria uma nova campanha
+          description: Cria uma nova campanha com os dados fornecidos no corpo da requisição.
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Nome da campanha
+                    description:
+                      type: string
+                      description: Descrição da campanha
+          responses:
+            '201':
+              description: Campanha criada com sucesso
+            '400':
+              description: Erro na criação da campanha
+      /campaign:
+        put:
+          summary: Atualiza uma campanha existente
+          description: Atualiza os dados de uma campanha existente.
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: ID da campanha a ser atualizada
+                    name:
+                      type: string
+                      description: Novo nome da campanha
+                    description:
+                      type: string
+                      description: Nova descrição da campanha
+          responses:
+            '200':
+              description: Campanha atualizada com sucesso
+            '404':
+              description: Campanha não encontrada
