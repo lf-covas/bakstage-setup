@@ -108,6 +108,7 @@ spec:
 ---
 
 # Definição do MySQL como Recurso
+---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata: 
@@ -126,10 +127,12 @@ spec:
     database: "db_dev_campanha"
     username: "usr_dev_campanha"
     password: "QBxDsIzAfXObj46agmixK0"
-
----
+relationships:
+  - type: consumedBy
+    targetRef: api:default/api-campanha
 
 # Definição do MongoDB como Recurso
+---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -148,3 +151,6 @@ spec:
     database: "db_dev_campanha"
     username: "usr-dev-campanha"
     password: "BR3TMiqs7P0vDRx2zqvVH3"
+relationships:
+  - type: consumedBy
+    targetRef: api:default/api-campanha
