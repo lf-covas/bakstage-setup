@@ -3,6 +3,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
+  namespace: default
   name: grupo-2
   description: Equipe responsável pela API de campanha e bancos de dados relacionados
 spec:
@@ -16,6 +17,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
+  namespace: default
   name: api-campanha
   description: API para gerenciamento de campanhas de marketing
   owner: grupo-2
@@ -108,6 +110,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata: 
+  namespace: default
   name: mysql-database
   description: Banco de dados MySQL usado pela API de campanhas
   owner: grupo-2
@@ -129,6 +132,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
+  namespace: default
   name: mongodb-database
   description: Banco de dados MongoDB usado pela API de campanhas
   owner: grupo-2
