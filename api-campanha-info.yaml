@@ -10,8 +10,7 @@ spec:
   type: team
   profile:
     displayName: Grupo 2
-  children:
-    - user:default/exemplo-usuario  # Exemplo de usuário; substitua ou remova conforme necessário
+  children: []
   members: []
 
 # Definição da API
@@ -108,7 +107,7 @@ spec:
 
 ---
 
-# Definição do MySQL como dependência
+# Definição do MySQL como Recurso
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata: 
@@ -130,7 +129,7 @@ spec:
 
 ---
 
-# Definição do MongoDB como dependência
+# Definição do MongoDB como Recurso
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
