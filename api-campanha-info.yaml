@@ -105,8 +105,6 @@ spec:
             '404':
               description: Campanha não encontrada
 
----
-
 # Definição do MySQL como Recurso
 ---
 apiVersion: backstage.io/v1alpha1
