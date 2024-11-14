@@ -14,7 +14,7 @@ metadata:
 spec:
   type: openapi
   lifecycle: experimental
-  owner: grupo-2
+  owner: grupo-2  # Garante que o campo 'owner' está aqui em 'spec'
   definition: |
     openapi: 3.0.0
     info:
