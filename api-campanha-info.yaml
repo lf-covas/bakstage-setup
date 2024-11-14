@@ -10,6 +10,7 @@ spec:
   type: team
   profile:
     displayName: Grupo 2
+  children: []  # Lista vazia para atender ao requisito
   members: []
 
 # Definição da API
