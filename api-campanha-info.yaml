@@ -1,3 +1,16 @@
+# Definição do Grupo
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: grupo-2
+  description: Equipe responsável pela API de campanha e bancos de dados relacionados
+spec:
+  type: team
+  profile:
+    displayName: Grupo 2
+  members: []
+
 # Definição da API
 ---
 apiVersion: backstage.io/v1alpha1
@@ -14,7 +27,7 @@ metadata:
 spec:
   type: openapi
   lifecycle: experimental
-  owner: grupo-2  # Garante que o campo 'owner' está aqui em 'spec'
+  owner: grupo-2
   definition: |
     openapi: 3.0.0
     info:
