@@ -87,6 +87,8 @@ spec:
             '404':
               description: Campanha não encontrada
 
+---
+
 # Definição do MySQL como dependência
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -104,6 +106,8 @@ spec:
     database: "db_dev_campanha"
     username: "usr_dev_campanha"
     password: "QBxDsIzAfXObj46agmixK0"
+
+---
 
 # Definição do MongoDB como dependência
 apiVersion: backstage.io/v1alpha1
