@@ -10,7 +10,8 @@ spec:
   type: team
   profile:
     displayName: Grupo 2
-  children: []  # Lista vazia para atender ao requisito
+  children:
+    - user:default/exemplo-usuario  # Exemplo de usuário; substitua ou remova conforme necessário
   members: []
 
 # Definição da API
