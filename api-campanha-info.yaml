@@ -1,4 +1,5 @@
 # Definição da API
+---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
@@ -99,6 +100,7 @@ metadata:
 spec: 
   type: database
   lifecycle: dev
+  owner: grupo-2
   parameters:
     hostname: "mysql-servidor"
     port: 3306
@@ -118,6 +120,7 @@ metadata:
 spec:
   type: database
   lifecycle: dev
+  owner: grupo-2
   parameters:
     hostname: "mongo-servidor"
     port: 27017
