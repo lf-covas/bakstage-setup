@@ -9,7 +9,7 @@ metadata:
 spec:
   type: team
   profile:
-    displayName: Grupo 2
+    displayName: Grupo 2  
   children: []
   members: []
 
@@ -104,9 +104,9 @@ spec:
               description: Campanha atualizada com sucesso
             '404':
               description: Campanha não encontrada
+---
 
 # Definição do MySQL como Recurso
----
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata: 
@@ -126,8 +126,9 @@ spec:
     username: "usr_dev_campanha"
     password: "QBxDsIzAfXObj46agmixK0"
 
-# Definição do MongoDB como Recurso
 ---
+
+# Definição do MongoDB como Recurso
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
