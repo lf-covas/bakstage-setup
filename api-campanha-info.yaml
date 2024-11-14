@@ -3,6 +3,12 @@ kind: API
 metadata:
   name: api-campanha
   description: API para gerenciamento de campanhas de marketing
+  owner: grupo 2
+  relationships:
+  - type: dependsOn
+    targetRef: resource:mysql-database
+  - type: dependsOn
+    targetRef: resource:mongodb-database
 spec:
   type: openapi
   lifecycle: experimental
@@ -81,42 +87,37 @@ spec:
             '404':
               description: Campanha não encontrada
 
+# Definição do MySQL como dependência
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata: 
   name: mysql-database
   description: Banco de dados MySQL usado pela API de campanhas para salvar informações basicas sobre a campanha.
+  owner: Grupo 2
 
 spec: 
   type: database
-  owner: grupo 2
-  system: api-campanha
-  dependsOn:
-    - type: service
-      name: api-campanha
+  lifecycle: dev
   parameters:
     hostname: "mysql-servidor"
     port: 3306
-    database: "banco do romualdo"
-    username: "db_dev_campanha"
-    password: "romualdo 1"
+    database: "db_dev_campanha"
+    username: "usr_dev_campanha"
+    password: "QBxDsIzAfXObj46agmixK0"
 
-# Definição do recurso MongoDB
+# Definição do MongoDB como dependência
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: mongodb-database
   description: Banco de dados MongoDB usado pela API de campanhas
+  owner: Grupo 2
 spec:
   type: database
-  owner: equipe-api
-  system: api-campanha
-  dependsOn:
-    - type: service
-      name: api-campanha
+  lifecycle: dev
   parameters:
     hostname: "mongo-servidor"
     port: 27017
-    database: "nome_do_banco"
-    username: "${MONGO_USER}"
-    password: "${MONGO_PASSWORD}"
+    database: "db_dev_campanha"
+    username: "usr-dev-campanha"
+    password: "BR3TMiqs7P0vDRx2zqvVH3"
