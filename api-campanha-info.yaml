@@ -22,8 +22,8 @@ metadata:
   name: api-campanha
   description: API para gerenciamento de campanhas de marketing
   owner: grupo-2
-  annotations:
-    backstage.io/api-docs-url: "http://localhost:7007/api-docs" # URL do Swagger UI
+  # annotations:
+    # backstage.io/api-docs-url: "http://localhost:7007/api-docs" # URL do Swagger UI
   relationships:
     - type: dependsOn
       targetRef: resource:default/mysql-database
