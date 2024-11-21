@@ -9,6 +9,7 @@ metadata:
 spec:
   type: team
   profile:
+    displayName: Grupo 2
     displayName: Grupo 2  
   children: []
   members: []
@@ -22,8 +23,6 @@ metadata:
   name: api-campanha
   description: API para gerenciamento de campanhas de marketing
   owner: grupo-2
-  annotations:
-    backstage.io/api-docs-url: "http://localhost:5000/api-docs"
   relationships:
     - type: dependsOn
       targetRef: resource:default/mysql-database
@@ -62,7 +61,7 @@ spec:
                           description: Nome da campanha
         post:
           summary: Cria uma nova campanha
-          description: Cria uma nova campanha a partir dos dados fornecidos.
+          description: Cria uma nova campanha com os dados fornecidos no corpo da requisição.
           requestBody:
             required: true
             content:
@@ -106,19 +105,21 @@ spec:
               description: Campanha atualizada com sucesso
             '404':
               description: Campanha não encontrada
+---
 
 # Definição do MySQL como Recurso
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
-metadata:
+metadata: 
   namespace: default
   name: mysql-database
   description: Banco de dados MySQL usado pela API de campanhas
   owner: grupo-2
-spec:
+spec: 
   type: database
   lifecycle: dev
+  owner: grupo-2
   system: api-campanha
   parameters:
     hostname: "mysql-servidor"
@@ -129,6 +130,7 @@ spec:
 
 # Definição do MongoDB como Recurso
 ---
+# Definição do MongoDB como Recurso
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -139,6 +141,7 @@ metadata:
 spec:
   type: database
   lifecycle: dev
+  owner: grupo-2
   system: api-campanha
   parameters:
     hostname: "mongo-servidor"
