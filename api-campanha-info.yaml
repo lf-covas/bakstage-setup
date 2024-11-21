@@ -22,6 +22,8 @@ metadata:
   name: api-campanha
   description: API para gerenciamento de campanhas de marketing
   owner: grupo-2
+  annotations:
+    backstage.io/api-docs-url: "http://localhost:7007/api-docs" # URL do Swagger UI
   relationships:
     - type: dependsOn
       targetRef: resource:default/mysql-database
@@ -37,7 +39,7 @@ spec:
       title: API de Campanha
       version: 1.0.0
       description: API que permite gerenciar campanhas de marketing, incluindo criação, atualização e listagem de campanhas.
-    paths:
+paths:
       /campaigns:
         get:
           summary: Lista todas as campanhas
@@ -60,7 +62,7 @@ spec:
                           description: Nome da campanha
         post:
           summary: Cria uma nova campanha
-          description: Cria uma nova campanha com os dados fornecidos no corpo da requisição.
+          description: Cria uma nova campanha a partir dos dados fornecidos.
           requestBody:
             required: true
             content:
