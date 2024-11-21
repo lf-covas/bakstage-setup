@@ -1,3 +1,20 @@
+# Definição do Grupo
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: default
+  name: grupo-2
+  description: Equipe responsável pela API de campanha e bancos de dados relacionados
+spec:
+  type: team
+  profile:
+    displayName: Grupo 2  
+  children: []
+  members: []
+
+# Definição da API
+---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
@@ -5,8 +22,11 @@ metadata:
   name: api-campanha
   description: API para gerenciamento de campanhas de marketing
   owner: grupo-2
-  annotations:
-    backstage.io/api-docs-url: "http://localhost:7007/api-docs" # Link do Swagger UI
+  relationships:
+    - type: dependsOn
+      targetRef: resource:default/mysql-database
+    - type: dependsOn
+      targetRef: resource:default/mongodb-database
 spec:
   type: openapi
   lifecycle: experimental
@@ -16,15 +36,15 @@ spec:
     info:
       title: API de Campanha
       version: 1.0.0
-      description: API que permite gerenciar campanhas de marketing.
+      description: API que permite gerenciar campanhas de marketing, incluindo criação, atualização e listagem de campanhas.
     paths:
       /campaigns:
         get:
-          summary: Retorna a lista de campanhas
-          description: Lista todas as campanhas disponíveis.
+          summary: Lista todas as campanhas
+          description: Retorna uma lista de todas as campanhas disponíveis.
           responses:
             '200':
-              description: Lista de Campanhas sem filtragem
+              description: Lista de campanhas retornada com sucesso
               content:
                 application/json:
                   schema:
@@ -33,39 +53,94 @@ spec:
                       type: object
                       properties:
                         id:
-                          type: integer
-                          example: 1
+                          type: string
+                          description: ID da campanha
                         name:
                           type: string
-                          example: 'Fulano de Tal'
+                          description: Nome da campanha
         post:
           summary: Cria uma nova campanha
           description: Cria uma nova campanha a partir dos dados fornecidos.
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Nome da campanha
+                    description:
+                      type: string
+                      description: Descrição da campanha
           responses:
             '201':
-              description: Campanha criada
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        example: 1
-                      name:
-                        type: string
-                        example: 'Fulano de Tal'
-      /campaigns/{id}:
+              description: Campanha criada com sucesso
+            '400':
+              description: Erro na criação da campanha
+      /campaign:
         put:
-          summary: Atualiza uma campanha
-          parameters:
-            - in: path
-              name: id
-              required: true
-              schema:
-                type: string
-              description: ID da campanha
+          summary: Atualiza uma campanha existente
           description: Atualiza os dados de uma campanha existente.
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: ID da campanha a ser atualizada
+                    name:
+                      type: string
+                      description: Novo nome da campanha
+                    description:
+                      type: string
+                      description: Nova descrição da campanha
           responses:
             '200':
               description: Campanha atualizada com sucesso
+            '404':
+              description: Campanha não encontrada
+
+# Definição do MySQL como Recurso
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  namespace: default
+  name: mysql-database
+  description: Banco de dados MySQL usado pela API de campanhas
+  owner: grupo-2
+spec:
+  type: database
+  lifecycle: dev
+  system: api-campanha
+  parameters:
+    hostname: "mysql-servidor"
+    port: 3306
+    database: "db_dev_campanha"
+    username: "usr_dev_campanha"
+    password: "QBxDsIzAfXObj46agmixK0"
+
+# Definição do MongoDB como Recurso
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  namespace: default
+  name: mongodb-database
+  description: Banco de dados MongoDB usado pela API de campanhas
+  owner: grupo-2
+spec:
+  type: database
+  lifecycle: dev
+  system: api-campanha
+  parameters:
+    hostname: "mongo-servidor"
+    port: 27017
+    database: "db_dev_campanha"
+    username: "usr-dev-campanha"
+    password: "BR3TMiqs7P0vDRx2zqvVH3"
